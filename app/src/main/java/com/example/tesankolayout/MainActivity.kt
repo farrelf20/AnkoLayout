@@ -1,0 +1,125 @@
+package com.example.tesankolayout
+
+import android.graphics.Color
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.view.Gravity
+import android.widget.TextView
+import org.jetbrains.anko.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
+
+class MainActivity : AppCompatActivity() {
+
+    companion object{
+        lateinit var nama : TextView
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        ViewMain().setContentView(this)
+        nama.text = intent.getStringExtra("nama")
+    }
+
+    override fun onBackPressed() {
+        alert("Apakah Yakin Keluar?", "Perhatian!!!") {
+            positiveButton("Iya"){
+                finish()
+            }
+            negativeButton("Tidak") {
+                //
+            }
+        }.show()
+    }
+
+    class ViewMain : AnkoComponent<MainActivity> {
+        override fun createView(ui: AnkoContext<MainActivity>) = with(ui) {
+            verticalLayout {
+                lparams {
+                    width = matchParent
+                    height = matchParent
+                    padding = 75
+                }
+                textView {
+                    text = "Welcome"
+                }.lparams(wrapContent, wrapContent)
+                nama = textView {
+                    textSize = 25.0f
+                }.lparams(wrapContent, wrapContent) {
+                    topMargin = 25
+                }
+                linearLayout {
+                    lparams(matchParent, 200) {
+                        margin = 25
+                    }
+                    onClick {
+                        toast("Ini Layout 1")
+                    }
+                    imageView {
+                        imageResource = R.drawable.ic_face
+                    }.lparams(200, 200)
+                    verticalLayout {
+                        lparams(matchParent, matchParent) {
+                            verticalGravity = Gravity.CENTER
+                        }
+                        backgroundColor = Color.parseColor("#c5cbd6")
+                        textView {
+                            text = "Latihan Anko Layout 1"
+                            textSize = 22.0f
+                        }.lparams {
+                            marginStart = 20
+                        }
+                    }
+
+                }
+                linearLayout {
+                    lparams(matchParent, 200) {
+                        margin = 25
+                    }
+                    onClick {
+                        toast("Ini Layout 2")
+                    }
+                    imageView {
+                        imageResource = R.drawable.ic_face
+                    }.lparams(200, 200)
+                    verticalLayout {
+                        lparams(matchParent, matchParent) {
+                            verticalGravity = Gravity.CENTER
+                        }
+                        backgroundColor = Color.parseColor("#c5cbd6")
+                        textView {
+                            text = "Latihan Anko Layout 2"
+                            textSize = 22.0f
+                        }.lparams {
+                            marginStart = 20
+                        }
+                    }
+
+                }
+                linearLayout {
+                    lparams(matchParent, 200) {
+                        margin = 25
+                    }
+                    onClick {
+                        toast("Ini Layout 3")
+                    }
+                    imageView {
+                        imageResource = R.drawable.ic_face
+                    }.lparams(200, 200)
+                    verticalLayout {
+                        lparams(matchParent, matchParent) {
+                            verticalGravity = Gravity.CENTER
+                        }
+                        backgroundColor = Color.parseColor("#c5cbd6")
+                        textView {
+                            text = "Latihan Anko Layout 3"
+                            textSize = 22.0f
+                        }.lparams {
+                            marginStart = 20
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
